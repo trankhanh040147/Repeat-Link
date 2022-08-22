@@ -13,8 +13,8 @@ delayTimeReopen = 1 # (seconds): delay time when open the browser
 delayTimeClose = 1 # (seconds): delay time when kill the process
 delayBetweenWindows = 4 # (seconds): delay time when open more than 1 tab
 
-defaultTimeClose = 5 # (seconds)
-defaultTimeReopen = 15*60 # (seconds)
+defaultTimeClose = 2 # (seconds)
+defaultTimeReopen = 15*60 - 20 # (seconds)
 defaultTotalWindows = 1 
 
 bg_default = "#262626"
