@@ -4,6 +4,7 @@ from operator import truediv
 import tkinter as tk
 from tkinter import DISABLED, filedialog,Text
 import os
+from turtle import title
 import webbrowser as wb #Open URL
 import time
 import threading
@@ -26,10 +27,17 @@ def Run():
     global timeReopen
     global timeClose
     global totalWindows
+    global browser_1st
 
     def Get_Browser_Name(browser_dir):
         #Get the program's name from a directory |ex: Get_Browser_Name('..//brave.exe') --> 'brave.exe' | 
         return browser_dir[browser_dir.rfind("//")+2::]
+
+    #Default 1st browser is assigned to Brave, if you haven't chosen any browser yet, it's will automatically assign to brave
+    try:
+        browser_1st
+    except NameError:
+         browser_1st = "C://Program Files//BraveSoftware//Brave-Browser//Application//brave.exe"
 
     if True:
         while Running:
@@ -68,6 +76,12 @@ def Start_Command():
     timeReopen = 0 # Do once in the beginning then set the time re-open
     timeClose = float(enTimeClose.get()) +delayTimeReopen 
     totalWindows = float(enTotalWindows.get())
+    
+    #Default 1st browser is assigned to Brave, if you haven't chosen any browser yet, it's will automatically assign to brave
+    try:
+        browser_1st
+    except NameError:
+         browser_1st = "C://Program Files//BraveSoftware//Brave-Browser//Application//brave.exe"
 
     #Register các browser để sử dụng
     wb.register('browser_1st',None,
@@ -86,6 +100,7 @@ def Stop_Command():
     return
 
 def Select_File_1st():
+        
     filetypes = (
         ('text files', '*.exe'),
         ('All files', '*.*')
@@ -108,6 +123,7 @@ def Select_File_1st():
     )
 
     return browser_1st
+
 
 if __name__ == "__main__":
     
@@ -183,9 +199,9 @@ if __name__ == "__main__":
 
     #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     #Các label hiện chú thích
-    lbl_TimeClose = tk.Label(root, text ="Close browser after: ").place(x=20, y=22)
-    lbl_TimeReopen = tk.Label(root, text ="Reopen the link every: ").place(x=20, y=45)
-    lbl_TotalWindows = tk.Label(root, text ="Total tabs: ").place(x=20, y=68)
+    lbl_TimeClose = tk.Label(root, text ="Close browser after: ").place(x=18, y=22)
+    lbl_TimeReopen = tk.Label(root, text ="Reopen the link every: ").place(x=18, y=45)
+    lbl_TotalWindows = tk.Label(root, text ="Total tabs: ").place(x=18, y=68)
     lbl_TimeClose_unit = tk.Label(root, text="(seconds)").place(x=222, y=22)
     lbl_TimeReopen_unit = tk.Label(root, text="(seconds)").place(x=222, y=45)
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
